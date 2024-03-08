@@ -17,9 +17,24 @@ class ProductFilter {
     this.query = this.query.find({ ...keyword });
     return this;
   }
-  filter() {}
+  filter() {
+    const queryCopy = { ...this.queryStr };
+    const deleteArea = ['keyword', 'page', 'limit'];
+    deleteArea.forEach((item) => delete queryCopy[item]);
 
-  pagination() {}
+    const queryStr = JSON.stringify(queryCopy);
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);
+
+    this.query = this.query.find(JSON.parse(queryStr));
+    return this;
+  }
+
+  pagination(resultPerPage) {
+    const activePage = this.queryStr.page || 1;
+    const skip = resultPerPage * (activePage - 1);
+    this.query = this.query.limit(resultPerPage).skip(skip);
+    return this;
+  }
 }
 
 module.exports = ProductFilter;
