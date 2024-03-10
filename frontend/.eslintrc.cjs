@@ -18,4 +18,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+  compilerOptions: {
+    noUnusedLocals: false,
+    noUnusedParameters: false,
+  },
+};

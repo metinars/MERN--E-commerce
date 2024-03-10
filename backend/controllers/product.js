@@ -6,7 +6,7 @@ const allProduct = async (req, res) => {
   const resultPerPage = 10;
   const productFilter = new ProductFilter(Product.find(), req.query)
     .search()
-    .fiter()
+    .filter()
     .pagination(resultPerPage);
 
   const products = await productFilter.query;
