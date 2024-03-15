@@ -1,0 +1,64 @@
+.product__detail {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+    gap: 1.25rem;
+}
+
+.detail__slider {
+    width: 600px;
+}
+
+.detail__info > *{
+    margin-top: 0.75rem;
+}
+
+.detail__info .name {
+    font-size: 1.875rem; 
+line-height: 2.25rem;
+}
+
+.detail__info .desc {
+    font-size: 1.25rem; 
+    line-height: 1.75rem; 
+}
+
+.detail__info .stock {
+    font-size: 1.25rem; 
+    line-height: 1.75rem; 
+    color: rgb(34 197 94);
+}
+
+.detail__info .dont__stock {
+    font-size: 1.25rem;
+    line-height: 1.75rem; 
+    color: red;
+}
+
+.detail__info .cetagory__name {
+    font-size: 1.25rem;
+    line-height: 1.75rem; 
+}
+
+.basket__counter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.basket__counter .minus__counter {
+    font-size: 2.5rem; 
+    line-height: 2.25rem; 
+    cursor: pointer;
+}
+
+.basket__counter .plus__counter {
+    font-size: 1.875rem; 
+    line-height: 2.25rem; 
+    cursor: pointer;
+}
+
+.basket__counter .result__counter {
+    font-size: 1.25rem; 
+    line-height: 1.75rem; 
+}

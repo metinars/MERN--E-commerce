@@ -1,0 +1,16 @@
+.home__product{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1.25rem;
+   margin: 1.25rem;
+   flex-wrap: wrap;
+}
+
+.banner img{
+   width: 100vw;
+   height: 600px;
+   display: flex;
+   justify-content: center;
+   margin: 2rem auto;
+}
