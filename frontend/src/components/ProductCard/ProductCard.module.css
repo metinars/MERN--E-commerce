@@ -1,4 +1,19 @@
 .card {
     width: 250px;
     background-color: rgb(243 244 246);
+    cursor: pointer;
+}
+
+.product__card__name {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    padding-left: 0.75rem; /* 12px */
+    padding-right: 0.75rem; /* 12px */
+}
+
+.product__card__price {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    padding-left: 0.75rem; /* 12px */
+    padding-right: 0.75rem; /* 12px */
 }

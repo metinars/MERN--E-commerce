@@ -2,9 +2,16 @@ import { SlBasket } from 'react-icons/sl';
 
 import classes from './Header.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getKeyword } from '../../redux/generalSlice';
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const menuItems = [
     {
       name: 'Profil',
@@ -20,13 +27,26 @@ const Header = () => {
     },
   ];
 
+  const keywordFunc = () => {
+    dispatch(getKeyword(keyword));
+    setKeyword('');
+    navigate('./products');
+  };
+
   return (
     <div className={classes.header}>
       <div className={classes.logo}>e.com</div>
       <div className={classes.header__actions}>
         <div className={classes.search}>
-          <input type="text" placeholder="Arama yap" />
-          <button className={classes.search__button}>Ara</button>
+          <input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            type="text"
+            placeholder="Arama yap"
+          />
+          <button onClick={keywordFunc} className={classes.search__button}>
+            Ara
+          </button>
         </div>
         <div className={classes.user__profile}>
           <img

@@ -1,35 +1,30 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../redux/productSlice';
-import ProductCard from '../components/ProductCard';
+import { getProducts } from '../../redux/productSlice';
+import ProductCard from '../../components/ProductCard';
+
+import classes from './Home.module.css';
+import bannerImage from '../../assets/banner.jpg';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProducts({ keyword: '', price: { min: 0, max: 30000 } }));
   }, [dispatch]);
-
-  console.log(products);
 
   return (
     <>
+      <div className={classes.banner}>
+        <img src={bannerImage} alt="" />
+      </div>
       {loading ? (
         'Loading..'
       ) : (
         <div>
           {products?.products && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '1.25rem',
-                margin: '1.25rem',
-                'flex-wrap': 'wrap',
-              }}
-            >
+            <div className={classes.home__product}>
               {products?.products?.map((product, i) => (
                 <ProductCard product={product} key={i} />
               ))}
