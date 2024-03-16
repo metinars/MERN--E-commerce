@@ -1,6 +1,6 @@
 import classes from './Filter.module.css';
 
-const Filter = () => {
+const Filter = ({ setPrice, setRating, setCategory }) => {
   const categoryList = [
     'Çanta',
     'Ayakkabı',
@@ -14,20 +14,42 @@ const Filter = () => {
     <div className={classes.filter}>
       <div>Filtreleme</div>
       <div className={classes.input__group}>
-        <input className={classes.border} type="number" placeholder="Min" />
-        <input className={classes.border} type="number" placeholder="Max" />
+        <input
+          onChange={(e) =>
+            setPrice((prev) => ({ ...prev, min: e.target.value }))
+          }
+          className={classes.border}
+          type="number"
+          placeholder="Min"
+        />
+        <input
+          onChange={(e) =>
+            setPrice((prev) => ({ ...prev, max: e.target.value }))
+          }
+          className={classes.border}
+          type="number"
+          placeholder="Max"
+        />
       </div>
       <div>
         <div className={classes.category__label}>Kategori</div>
         {categoryList.map((category, i) => (
-          <div className={classes.category} key={i}>
+          <div
+            onClick={() => setCategory(category)}
+            className={classes.category}
+            key={i}
+          >
             {category}
           </div>
         ))}
         <hr />
         <div className={classes.category__label}>Puanlama</div>
         {ratingList.map((rating, i) => (
-          <div className={classes.rating} key={i}>
+          <div
+            onClick={() => setRating(rating)}
+            className={classes.rating}
+            key={i}
+          >
             {rating}
           </div>
         ))}

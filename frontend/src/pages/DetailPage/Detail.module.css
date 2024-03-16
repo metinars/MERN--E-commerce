@@ -3,6 +3,7 @@
     margin-top: 1rem;
     justify-content: center;
     gap: 1.25rem;
+    height: 100vh;
 }
 
 .detail__slider {
