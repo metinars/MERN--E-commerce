@@ -59,13 +59,13 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    res.status(500).json({ message: 'Böyle bir kullanıcı bulunamadı.' });
+    return res.status(500).json({ message: 'Böyle bir kullanıcı bulunamadı.' });
   }
 
   const comparePassword = await bcrypt.compare(password, user.password);
 
   if (!comparePassword) {
-    res.status(500).json({ message: 'Parolanızını yanlış girdiniz' });
+    return res.status(500).json({ message: 'Parolanızını yanlış girdiniz' });
   }
 
   const token = await jwt.sign({ id: user._id }, 'SECRETTOKEN', {
@@ -185,7 +185,7 @@ const resetPassword = async (req, res) => {
 };
 
 const userDetail = async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.user.id);
   res.status(200).json({ user });
 };
 

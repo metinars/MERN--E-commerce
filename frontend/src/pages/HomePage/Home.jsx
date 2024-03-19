@@ -11,7 +11,14 @@ const Home = () => {
   const { products, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts({ keyword: '', price: { min: 0, max: 30000 } }));
+    dispatch(
+      getProducts({
+        rating: '',
+        keyword: '',
+        price: { min: 0, max: 30000 },
+        category: '',
+      })
+    );
   }, [dispatch]);
 
   return (
