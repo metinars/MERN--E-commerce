@@ -1,7 +1,10 @@
-.products__container {
+.products__page {
+    height: 100vh;
+}
+
+.products__filter__container {
     display: flex;
     gap: 0.75rem;
-    min-height: 100vh;
 }
 
 .products{
@@ -11,4 +14,23 @@
     gap: 1.25rem;
     margin: 1.25rem;
     flex-wrap: wrap;
+ }
+
+ .paginate {
+    padding-top: 3rem;
+ }
+
+ .paginate ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    gap: 1rem;
+ }
+
+ .paginate ul li {
+    cursor: pointer;
+    font-size: 1.5rem; 
+    line-height: 2rem; 
  }

@@ -3,6 +3,7 @@ import Filter from '../../layout/Filter';
 import { useEffect, useState } from 'react';
 import { getProducts } from '../../redux/productSlice';
 import ProductCard from '../../components/ProductCard';
+import ReactPaginate from 'react-paginate';
 
 import classes from './Products.module.css';
 
@@ -13,6 +14,17 @@ const Products = () => {
   const [price, setPrice] = useState({ min: 0, max: 30000 });
   const [rating, setRating] = useState(0);
   const [category, setCategory] = useState('');
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const endOffset = itemOffset + 3;
+  const currentItems = products?.products?.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(products?.products?.length / 3);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 3) % products?.products?.length;
+
+    setItemOffset(newOffset);
+  };
 
   useEffect(() => {
     dispatch(
@@ -26,8 +38,8 @@ const Products = () => {
   }, [dispatch, keyword, price, rating, category]);
 
   return (
-    <div>
-      <div className={classes.products__container}>
+    <div className={classes.products__page}>
+      <div className={classes.products__filter__container}>
         <Filter
           setPrice={setPrice}
           setRating={setRating}
@@ -40,7 +52,7 @@ const Products = () => {
             <div>
               {products?.products && (
                 <div className={classes.products}>
-                  {products?.products?.map((product, i) => (
+                  {currentItems?.map((product, i) => (
                     <ProductCard product={product} key={i} />
                   ))}
                 </div>
@@ -49,7 +61,17 @@ const Products = () => {
           )}
         </div>
       </div>
-      <div>Pagination</div>
+      <div className={classes.paginate}>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+        />
+      </div>
     </div>
   );
 };
