@@ -2,7 +2,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 const authenticationMid = async (req, res, next) => {
-  const { token } = req.cookies;
+  const token = req.headers.authorization.split(' ')[1];
 
   if (!token) {
     return res.status(500).json({ message: 'Erişim için giriş yapmalısınız' });
