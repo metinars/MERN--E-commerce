@@ -1,3 +1,24 @@
-.profile__page{
+.profile__page {
     height: 100vh;
+}
+
+.user__details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 3rem;
+}
+
+.user__info > * {
+    margin-top: 0.5rem;
+}
+
+.user__info .name {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.user__info .email {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
 }

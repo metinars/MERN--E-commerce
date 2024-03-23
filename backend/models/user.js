@@ -25,14 +25,14 @@ const userSchema = new mongoose.Schema(
         type: String,
         require: true,
       },
-      role: {
-        type: String,
-        default: 'user',
-        required: true,
-      },
-      resetPasswordToken: String,
-      resetPasswordDate: Date,
     },
+    role: {
+      type: String,
+      default: 'user',
+      required: true,
+    },
+    resetPasswordToken: String,
+    resetPasswordDate: Date,
   },
   { timestamps: true }
 );

@@ -94,6 +94,7 @@ const Auth = () => {
               name={'avatar'}
               id={'avatar'}
               placeholder={'avatar'}
+              classes={{ cursor: 'pointer' }}
             />
           </div>
         )}

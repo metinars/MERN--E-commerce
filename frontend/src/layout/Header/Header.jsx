@@ -34,6 +34,15 @@ const Header = () => {
     navigate('./products');
   };
 
+  const menuHandler = (item) => {
+    if (item.name == 'Çıkış') {
+      localStorage.clear();
+      window.location = '/';
+    } else {
+      window.location = item.url;
+    }
+  };
+
   return (
     <div className={classes.header}>
       <div className={classes.logo}>e.com</div>
@@ -63,7 +72,7 @@ const Header = () => {
             <div className={classes.user__profile__card}>
               {menuItems.map((item, i) => (
                 <div
-                  onClick={() => (window.location = item.url)}
+                  onClick={() => menuHandler(item)}
                   className={classes.user__profile__item}
                   key={i}
                 >
