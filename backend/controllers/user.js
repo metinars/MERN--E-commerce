@@ -107,13 +107,14 @@ const forgotPassword = async (req, res) => {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-  user.resetPasswordDate = Date.nov() + 15 * 60 * 1000;
+  user.resetPasswordDate = Date.now() + 15 * 60 * 1000;
 
   await user.save({ validateBeforeSave: false });
 
-  const passwordUrl = `${req.protocol}://${req.get(
-    'host'
-  )}/reset/${resetToken}`;
+  // const passwordUrl = `${req.protocol}://${req.get(
+  //   'host'
+  // )}/reset/${resetToken}`;
+  const passwordUrl = `${req.protocol}://localhost:5173/reset/${resetToken}`;
 
   const message = `Şifreni sıfırlamak için gerekli bağlantı : ${passwordUrl}`;
 
@@ -124,14 +125,16 @@ const forgotPassword = async (req, res) => {
       service: 'gmail',
       host: 'smtp.gmail.com',
       auth: {
-        user: 'youremail@gmail.com',
-        pass: 'password',
+        user: 'nodemailler29@gmail.com',
+        pass: 'pfgv gndz yaau ipbd',
       },
       secure: true,
     });
 
+    // Warmup Inbox
+
     const mailData = {
-      from: 'youremail@gmail.com', // sender address
+      from: 'nodemailler29@gmail.com', // sender address
       to: req.body.email, // list of receivers
       subject: 'Şifre Sıfırlama',
       text: message,
@@ -165,7 +168,9 @@ const resetPassword = async (req, res) => {
     return res.status(500).json({ message: 'Geçersiz Token' });
   }
 
-  user.password = req.body.password;
+  const passwordHash = await bcrypt.hash(req.body.password, 10);
+
+  user.password = passwordHash;
   user.resetPasswordDate = undefined;
   user.resetPasswordToken = undefined;
 
