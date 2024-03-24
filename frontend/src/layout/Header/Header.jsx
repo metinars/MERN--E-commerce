@@ -10,6 +10,7 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [keyword, setKeyword] = useState('');
   const { user, isAuth } = useSelector((state) => state.user);
+  const { carts } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,7 +46,9 @@ const Header = () => {
 
   return (
     <div className={classes.header}>
-      <div className={classes.logo}>e.com</div>
+      <div onClick={() => navigate('/')} className={classes.logo}>
+        e.com
+      </div>
       <div className={classes.header__actions}>
         <div className={classes.search}>
           <input
@@ -82,9 +85,9 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className={classes.basket}>
+        <div onClick={() => navigate('/cart')} className={classes.basket}>
           <SlBasket className={classes.basket__icon} />
-          <span>4</span>
+          <span>{carts?.length}</span>
         </div>
       </div>
     </div>

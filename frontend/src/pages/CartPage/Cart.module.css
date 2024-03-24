@@ -1,0 +1,36 @@
+.cart__page {
+   min-height: 100vh;
+}
+
+.product__cart {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    border-bottom: 1px solid black;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 2rem;
+}
+
+.cart__img {
+    width: 5rem;
+}
+
+.cart__info {
+    display: contents;
+}
+
+.remove__btn {
+    width: 150px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    background-color: rgb(239 68 68);
+    color: white;
+    cursor: pointer;
+}
