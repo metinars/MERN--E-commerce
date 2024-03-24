@@ -16,11 +16,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Cart from './pages/CartPage/Cart';
+import Admin from './pages/AdminPage/Admin';
 
 function App() {
   const dispatch = useDispatch();
   const { user, isAuth } = useSelector((state) => state.user);
-  // const token = localStorage.getItem('token');
 
   useEffect(() => {
     dispatch(profile());
@@ -35,9 +35,14 @@ function App() {
         <Route exact path="/forgot" element={<ForgotPassword />} />
         <Route exact path="/reset/:token" element={<ResetPassword />} />
         <Route exact path="/cart" element={<Cart />} />
-        <Route element={<ProtectedRoute />}>
+
+        <Route element={<ProtectedRoute isAdmin={false} />}>
           <Route exact path="/profile" element={<Profile />} />
         </Route>
+        <Route element={<ProtectedRoute isAdmin={true} />}>
+          <Route exact path="/admin" element={<Admin />} />
+        </Route>
+
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/product/:id" element={<Detail />} />
       </Routes>
