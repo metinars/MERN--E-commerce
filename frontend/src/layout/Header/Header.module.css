@@ -9,6 +9,7 @@
 
 .logo{
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .header__actions{
@@ -69,6 +70,7 @@
 
 .basket{
     position: relative;
+    cursor: pointer;
 }
 
 .basket__icon{

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import classes from './Detail.module.css';
 import Slider from 'react-slick';
 import Button from '../../components/Button';
+import { addToCart } from '../../redux/cartSlice';
 
 const Detail = () => {
   const { id } = useParams();
@@ -28,7 +29,16 @@ const Detail = () => {
     slidesToScroll: 1,
   };
 
-  const addBasket = () => {};
+  const addBasket = () => {
+    const data = {
+      id: product?.product?._id,
+      name: product?.product?.name,
+      images: product?.product?.images?.[0],
+      price: product?.product?.price,
+      quantity: quantity,
+    };
+    dispatch(addToCart(data));
+  };
 
   const decrement = () => {
     if (quantity > 1) {
@@ -41,6 +51,8 @@ const Detail = () => {
       setQuantity(quantity + 1);
     }
   };
+
+  console.log(product);
 
   return (
     <>

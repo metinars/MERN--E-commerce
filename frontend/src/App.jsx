@@ -15,6 +15,7 @@ import Profile from './pages/ProfilePage/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Cart from './pages/CartPage/Cart';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/auth" element={<Auth />} />
         <Route exact path="/forgot" element={<ForgotPassword />} />
         <Route exact path="/reset/:token" element={<ResetPassword />} />
+        <Route exact path="/cart" element={<Cart />} />
         <Route element={<ProtectedRoute />}>
           <Route exact path="/profile" element={<Profile />} />
         </Route>

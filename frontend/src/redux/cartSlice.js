@@ -1,0 +1,63 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const fetchFromLocalStorage = () => {
+  let cart = localStorage.getItem('cart');
+
+  if (cart) {
+    return JSON.parse(localStorage.getItem('cart'));
+  } else {
+    return [];
+  }
+};
+
+const storeLocalStorage = (data) => {
+  localStorage.setItem('cart', JSON.stringify(data));
+};
+
+const initialState = {
+  carts: fetchFromLocalStorage(),
+};
+
+export const generalSlice = createSlice({
+  name: 'general',
+  initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      const isItemCart = state.carts.find(
+        (cart) => cart.id == action.payload.id
+      );
+      if (isItemCart) {
+        const tempCart = state.carts.map((item) => {
+          if (item.id == action.payload.id) {
+            let tempQuantity = item.quantity + action.payload.quantity;
+            return {
+              ...item,
+              quantity: tempQuantity,
+            };
+          } else {
+            return item;
+          }
+        });
+        state.carts = tempCart;
+
+        storeLocalStorage(state.carts);
+      } else {
+        state.carts.push(action.payload);
+        storeLocalStorage(state.carts);
+      }
+    },
+    removeFromCart: (state, action) => {
+      const tempCart = state.carts.filter((item) => item.id != action.payload);
+      state.carts = tempCart;
+      storeLocalStorage(state.carts);
+    },
+    clearCart: (state, action) => {
+      state.carts = [];
+      storeLocalStorage(state.carts);
+    },
+  },
+});
+
+export const { addToCart, removeFromCart, clearCart } = generalSlice.actions;
+
+export default generalSlice.reducer;
