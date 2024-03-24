@@ -43,15 +43,17 @@ const createProduct = async (req, res) => {
 
   let allImage = [];
 
-  for (let index = 0; index < images.length; index++) {
-    const result = await cloudinary.uploader.upload(images[i], {
-      folder: 'products',
-    });
+  if (!images === undefined) {
+    for (let index = 0; index < images.length; index++) {
+      const result = await cloudinary.uploader.upload(images[i], {
+        folder: 'products',
+      });
 
-    allImage.push({
-      public_id: result.public_id,
-      url: result.secure_url,
-    });
+      allImage.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
   }
 
   req.body.images = allImage;

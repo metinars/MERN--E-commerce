@@ -17,14 +17,14 @@ router.get('/products', allProduct);
 router.get(
   '/admin/products',
   authenticationMid,
-  roleChecked('admin'),
+  // roleChecked('admin'),
   adminProducts
 );
 router.get('/product/:id', detailProduct);
 router.post(
   '/product/new',
   authenticationMid,
-  roleChecked('admin'),
+  // roleChecked('admin'),
   createProduct
 );
 router.post('/product/newReview', authenticationMid, createReview);

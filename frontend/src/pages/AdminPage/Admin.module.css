@@ -1,0 +1,12 @@
+.admin__page {
+    min-height: 100vh;
+}
+
+.admin__product{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 1.25rem;
+    flex-wrap: wrap;
+ }

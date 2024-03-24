@@ -1,11 +1,18 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ isAdmin }) => {
   const token = localStorage.getItem('token');
-  console.log(token);
-  return token ? <Outlet /> : <Navigate to="/auth" />;
+
+  if (isAdmin) {
+    return <Outlet />;
+  }
+
+  if (!isAdmin && token) {
+    return <Outlet />;
+  }
+
+  return <Navigate to="/auth" />;
 };
 
 export default ProtectedRoute;
